@@ -28,6 +28,25 @@ var albumMarconi = {
 	]
 };
 
+var albumAllman = {
+	title: 'Eat a Peach',
+	artist: 'The Allman Brothers Band',
+	label: 'Capricorn',
+	year: '1972',
+	albumArtUrl: 'https://upload.wikimedia.org/wikipedia/en/c/c3/Eat_a_Peach_%28James_Flournoy_Holmes_album_-_cover_art%29.jpg',
+	songs: [
+		{ title: "Ain't Wastin' Time No More", duration: '3:40' },
+		{ title: 'Les Brers in A Minor', duration: '9:03' },
+		{ title: 'Melissa', duration: '3:54' },
+		{ title: 'Mountain Jam', duration: '19:37' },
+		{ title: 'One Way Out', duration: '4:58' },
+		{ title: 'Trouble No More', duration: '3:43' },
+		{ title: 'Stand Back', duration: '3:24' },
+		{ title: 'Blue Sky', duration: '5:09' },
+		{ title: 'Little Martha', duration: '2:07' }
+	]
+};
+
 var createSongRow = function (songNumber, songName, songLength) {
 	var template = 
 		'<tr class="album-view-song-item">'
@@ -59,6 +78,20 @@ var setCurrentAlbum = function (album) {
 	}
 };
 
+//variable to change album on click
+var albumArt = document.getElementsByClassName('album-cover-art')[0];
+var albumsArray = [albumPicasso, albumMarconi, albumAllman];
+var counter = 0;
+
 window.onload = function () {
 	setCurrentAlbum(albumPicasso);
 };
+
+albumArt.addEventListener('click', function () {
+	if (counter < 2) {
+		counter++;
+	} else if (counter == 2) {
+		counter = 0;
+	}
+	setCurrentAlbum(albumsArray[counter]);
+});
