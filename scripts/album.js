@@ -87,7 +87,7 @@ window.onload = function () {
 	setCurrentAlbum(albumPicasso);
 };
 
-albumArt.addEventListener('click', function () {
+albumArt.addEventListener('click', function (event) {
 	if (counter < 2) {
 		counter++;
 	} else if (counter == 2) {
