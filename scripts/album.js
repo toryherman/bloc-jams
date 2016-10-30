@@ -59,6 +59,18 @@ var setCurrentAlbum = function (album) {
 	}
 };
 
+var findParentByClassName = function (element, className) {
+	while (element.parentNode) {
+		if (element.parentNode.classList !== undefined && 		element.parentNode.classList.contains(className)) {
+			return element.parentNode;
+		} else {
+			element = element.parentNode;
+		}
+	}
+	
+	return null;
+};
+
 var songListContainer = document.getElementsByClassName('album-view-song-list')[0];
 var songRows = document.getElementsByClassName('album-view-song-item');
 
