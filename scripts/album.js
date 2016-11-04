@@ -102,37 +102,26 @@ var updatePlayerBarSong = function() {
 	}
 };
 
-var nextSong = function() {
+var changeSong = function() {
 	var i = trackIndex(currentAlbum, currentSongFromAlbum);
 	var $lastSong = getSongNumberCell(i+1);
 	
 	$lastSong.html($lastSong.attr('data-song-number'));
 	
-	if (i < currentAlbum.songs.length - 1) {
-		i++;
-	} else {
-		i = 0;
+	if ($(this).hasClass('previous')) {
+		if (i > 0) {
+			i--;
+		} else {
+			i = currentAlbum.songs.length - 1;
+		}
+	} else if ($(this).hasClass('next')) {
+		if (i < currentAlbum.songs.length - 1) {
+			i++;
+		} else {
+			i = 0;
+		}	  
 	}
-	
-	var $newSong = getSongNumberCell(i+1);
-	$newSong.html(pauseButtonTemplate);
-	
-	setSong(i+1);
-	updatePlayerBarSong();
-};
 
-var previousSong = function() {
-	var i = trackIndex(currentAlbum, currentSongFromAlbum);
-	var $lastSong = getSongNumberCell(i+1);
-	
-	$lastSong.html($lastSong.attr('data-song-number'));
-	
-	if (i > 0) {
-		i--;
-	} else {
-		i = currentAlbum.songs.length - 1;
-	}
-	
 	var $newSong = getSongNumberCell(i+1);
 	$newSong.html(pauseButtonTemplate);
 	
@@ -154,6 +143,6 @@ var $nextButton = $('.main-controls .next');
 
 $(document).ready(function () {
 	setCurrentAlbum(albumPicasso);
-	$previousButton.click(previousSong);
-	$nextButton.click(nextSong);
+	$previousButton.click(changeSong);
+	$nextButton.click(changeSong);
 });
